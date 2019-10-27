@@ -1,3 +1,5 @@
+
+require 'pry'
 class School 
   
   def initialize(name) 
@@ -20,33 +22,31 @@ class School
     #self.roster[grade] ||= []
     #self.roster[grade] << name
     
-    
     if @roster.has_key?(grade)
       @roster[grade] << name 
     else 
       @roster[grade] = [name]
     end
     end
+    
+    def grade (grade_year)
+      #able to retrieve students from a grade
+      @roster[grade_year]
+      
+      #or you could do 
+      #self.roster[grade]
+    end
+    
+    def sort 
+      #alphabetize students within grade
+      self.roster.each do |grade, students|
+      students.sort!
+    end
+  end
+    
+    
+    #note on self 
+    # more abstraact. If we want to change @roster in the future, all self instances will be automatically updated
 end
 
 
-
-
-# At first you have a typo. Change Classto class. Next I suggest to use the initialize method. While creating a new object this is the perfect place to initialize instance variables.
-
-# class Something
-#   @@my_class_variable = [1]
-
-#   def initialize
-#     @something = []
-#   end
-
-#   def dosomething
-#     s = 5
-#     @something << s
-#   end
-
-#   def self.get_my_class_variable
-#     @@my_class_variable
-#   end
-# end

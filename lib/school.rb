@@ -1,3 +1,4 @@
+require "pry"
 class School 
   attr_accessor :student_name, :grade
   attr_reader :name, :roster
@@ -10,13 +11,6 @@ class School
     @name = name 
   end 
   
-   #create the new key and point it to an empty array. Then we can push the new value into that array.
-    # hash["new_key"] = []
-    # hash["new_key"] << "new_value_for_value_array"
- 
-    # hash
-    # => {"new_key"=>["new_value_for_value_array"]} 
-  
   def add_student(student_name, grade)
     @student_name = student_name 
     @grade = grade
@@ -24,7 +18,20 @@ class School
     if @roster.has_key?(grade)
       @roster[grade] << student_name
     else 
-      @roster[grade] = []
+      @roster[grade] = [student_name]
   end 
 end
+  
+  def grade(grade)
+    @grade = grade
+    @roster[grade]
+  end 
+  #You'll need to iterate through the roster and sort the students within each grade
+  def sort
+    
+   @roster.each do |key, value| 
+     #xibinding.pry 
+    value.sort!
+   end
+  end
  end 
